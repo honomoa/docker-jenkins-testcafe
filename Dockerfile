@@ -1,10 +1,11 @@
-FROM node:10-alpine
+FROM alpine:edge
 
 COPY testcafe.sh /bin/testcafe
 
 RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ upgrade  && \
     apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ add         \
-      chromium firefox xwininfo xvfb dbus eudev ttf-freefont fluxbox procps bash git openssh
+    nodejs nodejs-npm chromium firefox xwininfo xvfb dbus eudev ttf-freefont fluxbox procps    \
+    bash git openssh
 
 RUN npm install -g testcafe testcafe-reporter-xunit                                         && \
  npm cache clean --force                                                                    && \
@@ -15,5 +16,3 @@ RUN npm install -g testcafe testcafe-reporter-xunit                             
 USER user
 
 EXPOSE 1337 1338
-
-ENTRYPOINT ["/opt/testcafe/docker.sh"]
