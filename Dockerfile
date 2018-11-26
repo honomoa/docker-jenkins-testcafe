@@ -8,10 +8,10 @@ RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testin
     bash git openssh
 
 RUN npm install -g testcafe testcafe-reporter-xunit                                         && \
- npm cache clean --force                                                                    && \
- rm -rf /tmp/*                                                                              && \
- chmod +x /bin/testcafe                                                                     && \
- adduser -D user
+    npm cache clean --force                                                                 && \
+    rm -rf /tmp/*                                                                           && \
+    chmod +x /bin/testcafe                                                                  && \
+    adduser -D user
 
 USER user
 
