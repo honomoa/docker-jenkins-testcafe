@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-COPY testcafe.sh /bin/testcafe
+COPY testcafe.sh /usr/bin/testcafe
 
 RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ upgrade  && \
     apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ add         \
@@ -10,7 +10,7 @@ RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testin
 RUN npm install -g testcafe testcafe-reporter-xunit                                         && \
     npm cache clean --force                                                                 && \
     rm -rf /tmp/*                                                                           && \
-    chmod +x /bin/testcafe                                                                  && \
+    chmod +x /usr/bin/testcafe                                                              && \
     adduser -D user
 
 USER user
